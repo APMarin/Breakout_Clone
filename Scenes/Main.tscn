@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Walls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Images/wall-roof.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=5]
+[ext_resource path="res://Images/background2.png" type="Texture" id=6]
+[ext_resource path="res://Images/gondola.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 516.202, 4.5 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_left = -7.0
+margin_top = -7.0
+margin_right = 1021.0
+margin_bottom = 598.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gondola" type="TextureRect" parent="."]
+margin_left = 15.7727
+margin_top = 489.479
+margin_right = 80.7727
+margin_bottom = 600.479
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Walls" parent="." instance=ExtResource( 1 )]
+position = Vector2( -0.718353, 2.65387 )
+
+[node name="Walls2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1017.14, 2.97391 )
+
+[node name="Roof" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Roof"]
+
+[node name="Sprite" type="Sprite" parent="Roof/StaticBody2D"]
+position = Vector2( 508.54, -2.90245 )
+scale = Vector2( 1.03273, 0.140523 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roof/StaticBody2D"]
+position = Vector2( 508.687, -2.875 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 454.39, 558.144 )
+
+[node name="Ball" parent="." instance=ExtResource( 4 )]
+position = Vector2( 336.192, 364.208 )
