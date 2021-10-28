@@ -1,34 +1,25 @@
 extends Node2D
 
 onready var br=preload("res://Scenes/Brick.tscn")
-
-var is_dragging=false
-var touchpos=Vector2.ZERO
+onready var br2=preload("res://Scenes/Brick2.tscn")
 
 func _ready():
 	set_bricks()
 
 func set_bricks():
 	var numbr=0
-	for i in range(4):
+	for i in range(2):
 		for j in range(13):
 				var brick=br.instance()
-				brick.position=Vector2(100+70*(j),50+40*i)
+				var brick2=br2.instance()
+				brick2.position=Vector2(100+70*(j),50+40*i)
+				brick.position=Vector2(100+70*(j),130+40*i)
 				numbr+=1
 				add_child(brick)
+				add_child(brick2)
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.position.y>80:
-			if event.is_pressed():
-				is_dragging=true
-			if not event.is_pressed():
-				is_dragging=false
-				$Player.moveTo(event.position)
-	if event.position.y>80:
-		if is_dragging:
-			touchpos=event.position
-
-func _physics_process(_delta):
-	if is_dragging:
-		$Player.dragTo(touchpos)
+func fPause():
+	if Input.is_action_just_pressed("ui_select"):
+		get_tree().paused = true
+	else:
+		get_tree().paused = false

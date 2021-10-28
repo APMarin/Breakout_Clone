@@ -1,8 +1,5 @@
 extends Node2D
 
-
-func moveTo(pos):
-	$Player.global_position.x=pos.x;
-	
-func dragTo(pos):
-	$Player.global_position=pos
+func _is_paused():
+	if Input.is_key_pressed("KEY_P"):
+		get_tree().paused = true

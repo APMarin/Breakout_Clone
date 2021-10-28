@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var bHP = 50
+var bHP = 75
 
 func hit():
 	bHP-= 25
